@@ -4,9 +4,11 @@ import { festivalIndex } from '../../store/thunks/festivalThunk.js';
 import './FestivalList.css';
 import { dateFormatter } from '../../utils/dateFormatterUtil.js';
 import { setScrollEventFlg } from '../../store/slices/festivalSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 function FestivalList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const FestivalList = useSelector(state => state.festival.list);
   // const page = useSelector(state => state.festival.page);
@@ -14,12 +16,6 @@ function FestivalList() {
 
   // 스크롤 이벤트 처리를 위한 useEffect
   useEffect(() => {
-    // 로컬 스토리지에 저장된 날짜를 획득
-    // >저장된 날짜가 없으면 로컬 스토리지에 현재 날짜를 저장
-    // >저장된 날짜 있으면 아래 처리 속행
-    //   >오늘 날짜랑 비교
-    //    >>날짜가 과거면 로컬 스토리지 및 스테이트 초기화
-    //    >>아직 과거가 아니면 패스
 
     window.addEventListener('scroll', addNextPage); // 윈도우(브라우저)에서 작동하는 거라 List 페이지를 벗어나서도 작동함
 
@@ -47,13 +43,19 @@ function FestivalList() {
     // dispatch(festivalIndex(page + 1));
   }
 
+  // 상세 페이지로 이동
+  function redirectShow(item) {
+    // dispatch(setFestivalInfo(item));
+    navigate(`/festivals/${item.contentid}`);
+  }
+
   return (
     <>
       <div className="container">
         {
           FestivalList && FestivalList.map(item => {
             return (
-              <div className="card" key={item.contentid}>
+              <div className="card" onClick={() => {redirectShow(item)}} key={item.contentid}>
                 <div className="card-img" style={{backgroundImage: `url('${item.firstimage}')`}}></div>
                 <p className="card-title">{item.title}</p>
                 <p className="card-period">{dateFormatter.withHyphenYMD(item.eventstartdate)} ~ {dateFormatter.withHyphenYMD(item.eventenddate)}</p>
@@ -61,7 +63,7 @@ function FestivalList() {
             );
           })
         }
-        <button type="button" onClick={addNextPage}>더보기</button>
+        {/* <button type="button" onClick={addNextPage}>더보기</button> */}
         {/* <div className="card">
           <div className="card-img" style={{backgroundImage: `url('http://tong.visitkorea.or.kr/cms/resource/91/3484791_image2_1.jpg')`}}></div>
           <p className="card-title">안동 하회탈 축제</p>
