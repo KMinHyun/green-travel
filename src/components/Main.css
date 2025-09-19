@@ -1,6 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.img-and-title-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
 .title-img {
   display: block;
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
+  cursor: pointer;
+}
+
+.festival-list-link {
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.stay-list-link {
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
 }
