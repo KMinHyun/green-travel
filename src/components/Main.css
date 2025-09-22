@@ -1,23 +1,19 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+.Main-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .img-and-title-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
-  gap: 10px;
+  align-items: center;
 }
 
 .title-img {
-  display: block;
   margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
+  width: 90%;
   cursor: pointer;
 }
 
