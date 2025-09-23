@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <>
-      <h1>Green Travel</h1>
+      <h1><span className="Header-title" onClick={() => { navigate('/') }}>Green Travel</span></h1>
     </>
   )
 }
