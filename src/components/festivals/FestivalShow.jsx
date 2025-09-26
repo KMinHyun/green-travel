@@ -15,6 +15,7 @@ function FestivalShow() {
   useEffect(() => {
     // show에 info스테이트 저장 => info스테이트에 저장할 값이 필요 = 클릭한 카드의 정보 1개 => 이 정보는 어디서 가져와야 하는데, 이 정보 1개는 전체 리스트 정보에 있는 것 중에 1개 => 전체 리스트 정보는 festivalSlice.festivalList에 있음. 이걸 show에 가져와야 함 => 클릭한 카드의 정보를 특정할 수 있는 값이 있어야 하는데, 이게 segment parameter에 있음 => 갖고 와서 쓰려면 변수에 담아야 함
     const item = festivalList.find(item => params.id === item.contentid);
+
     dispatch(setFestivalInfo(item));
   }, []);
 

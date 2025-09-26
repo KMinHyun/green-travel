@@ -9,11 +9,12 @@ const festivalIndex = createAsyncThunk(
   async (arg, thunkAPI) => {
     // state에 접근하는 방법
     const state = thunkAPI.getState();
-    const pastDateYMD = dateFormatter.formatDateToYMD(dateCalculater.getPastDate((1000*60*60*24*30)));
+    const pastDateYMD = dateFormatter.formatDateToYMD(dateCalculater.getPastDate((1000*60*60*24*30))); 
 
     const url = `${axiosConfig.BASE_URL}/searchFestival2`
     const params = {
-      serviceKey: axiosConfig.SERVICE_KEY,
+      // serviceKey: axiosConfig.SERVICE_KEY,
+      serviceKey: import.meta.env.VITE_SERVICE_KEY,
       MobileOS : axiosConfig.MOBILE_OS,
       MobileApp: axiosConfig.MOBILE_APP,
       _type: axiosConfig.TYPE,
